@@ -3,7 +3,7 @@
 version: 2
 
 models: 
-  - name: stg_jaffle_shop__orders
+  - name: stg_jaffle_shop_orders
     description: Staged order data from our jaffle shop app. 
     columns:
       - name: order_id
@@ -22,7 +22,7 @@ models:
           - relationships: 
               field: customer_id
               to: ref('stg_jaffle_shop__customers')
-  - name: stg_jaffle_shop__customers
+  - name: stg_jaffle_shop_customers
     description: Staged customer data from our jaffle shop app. 
     columns:
       - name: customer_id
