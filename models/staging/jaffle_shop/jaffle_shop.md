@@ -13,13 +13,31 @@ One of the following values:
 {% enddocs %}
 
 {% docs order_id %}
-Order id is unique, so new ID for each order.
+Order id is unique, so new ID for each order. 
 Order id is primary key for orders.
 {% enddocs %}
 
+{% docs customer_idOrders %}
+Customer ID for each customer. 
+Therefore the same customer id can appear several time, if the customer have several orders. 
+{% enddocs %}
+
+{% docs customer_idCustomers %}
+Customer ID for each customer.
+One unique ID per row.  
+Customer ID is primary key for customers. 
+{% enddocs %}
+
+{% docs order_date %}
+Date for order. 
+{% enddocs %}
+
+{% docs first_name %}
+First name of customer. 
+{% enddocs %}
+
+{% docs last_name %}
+Last name of customer. 
+{% enddocs %}
 
 
-
-  #orders: customer_id, order_date, status
-  #customers: customer_id, first_name, last_name
-  

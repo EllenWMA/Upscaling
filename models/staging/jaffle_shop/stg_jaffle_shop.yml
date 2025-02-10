@@ -17,18 +17,25 @@ models:
           - accepted_values:
               values: ['returned', 'completed', 'return_pending', 'shipped', 'placed']
       - name: customer_id
+        description: "{{ doc('customer_idOrders') }}"
         tests:
           ##tests to ensure that every value in customer_id in orders exists as value in customer_id in customers
           - relationships: 
               field: customer_id
               to: ref('stg_jaffle_shop__customers')
+      - name: order_date
+        description: "{{ doc('order_date') }}"
   - name: stg_jaffle_shop_customers
     description: Staged customer data from our jaffle shop app. 
     columns:
       - name: customer_id
-        description: Primary key for customers
+        description: "{{ doc('customer_idCustomers') }}"
         tests: 
           - unique
           - not_null
+      - name: first_name
+        description: "{{ doc('first_name') }}"
+      - name: last_name
+        description: "{{ doc('last_name') }}"
       
 
