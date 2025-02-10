@@ -5,12 +5,24 @@ models:
     description: Staged payment data.
     columns: 
       - name: payment_id
-        description: id for payment. Primary key for payments. 
+        description: id for payment. Primary key for payments. The id is unique and not null. 
         tests:
           - unique
           - not_null
+      - name: order_id
+        description: Id for order. This is unique and not null. 
+        tests: 
+          - unique
+          - not_null
+      - name: payment_method
+        description: "{{ doc('payment_method') }}"
+        tests: 
+          - not_null
+          - accepted_values:
+              values: ['credit_card', 'coupon', 'bank_transfer', 'gift_card']
+        
+
               
 
-
-#payment_id, order_id, payment_method, status, amount, created_at, _batched_at
+#status, amount, created_at, _batched_at
 
