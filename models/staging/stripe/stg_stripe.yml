@@ -10,9 +10,8 @@ models:
           - unique
           - not_null
       - name: order_id
-        description: Id for order. This is unique and not null. 
+        description: Id for order. This is not null. 
         tests: 
-          - unique
           - not_null
       - name: payment_method
         description: "{{ doc('payment_method') }}"
@@ -20,9 +19,18 @@ models:
           - not_null
           - accepted_values:
               values: ['credit_card', 'coupon', 'bank_transfer', 'gift_card']
-        
-
-              
-
-#status, amount, created_at, _batched_at
+      - name: status
+        description: "{{ doc('payment_status') }}"
+        tests: 
+          - accepted_values:
+              values: ['success', 'fail']
+      - name: amount
+        description: amount in dollars.
+      - name: created_at
+        description: date the payment is created at
+        tests:
+          - not_null
+      - name: _batched_at
+        description: timestamp payment is created at
+  
 

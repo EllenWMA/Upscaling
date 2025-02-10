@@ -8,3 +8,5 @@ having (total_amount < 0) --test if anyone have total amount below 0, since all 
 
 
 
+
+              
