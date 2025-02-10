@@ -7,7 +7,7 @@ models:
     description: Staged order data from our jaffle shop app. 
     columns:
       - name: order_id
-        description: Primary key for orders
+        description: "{{ doc('order_id') }}"
         tests: 
           - unique 
           - not_null
@@ -31,3 +31,4 @@ models:
           - unique
           - not_null
       
+

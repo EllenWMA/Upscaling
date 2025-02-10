@@ -12,5 +12,14 @@ One of the following values:
 
 {% enddocs %}
 
+{% docs order_id %}
+Order id is unique, so new ID for each order.
+Order id is primary key for orders.
+{% enddocs %}
 
 
+
+
+  #orders: customer_id, order_date, status
+  #customers: customer_id, first_name, last_name
+  
