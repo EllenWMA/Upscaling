@@ -1,4 +1,4 @@
-#rename file to sources.yml
+#previously named 'src_stripe.yml'
 
 
 version: 2
@@ -14,4 +14,3 @@ sources:
           error_after: {count: 10, period: day}
           warn_after: {count: 12, period: hour}
         
-

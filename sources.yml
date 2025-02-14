@@ -1,5 +1,3 @@
-#rename file to sources.yml
-
 version: 2
 
 sources:
@@ -9,4 +7,5 @@ sources:
     tables:
       - name: customers
       - name: orders
+
 
