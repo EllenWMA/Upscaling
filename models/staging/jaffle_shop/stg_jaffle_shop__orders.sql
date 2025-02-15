@@ -15,7 +15,7 @@ transformed as (
             when status not in ('returned', 'return_pending')
             then order_date
         end as valid_order_date
-    from src_jaffle_shop
+    from source
 )
 
 select * from transformed

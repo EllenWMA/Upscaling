@@ -12,7 +12,7 @@ transformed as (
         status as payment_status, 
         round(amount / 100.0, 2) as payment_amount, --amount is stored inc ents, convert it to dollars, and round with 2 decimals
         created as payment_created_at
-    from stripe
+    from source
 )
 
 select * from transformed

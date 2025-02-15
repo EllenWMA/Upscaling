@@ -15,6 +15,7 @@ payments as (
     select * from {{ ref('stg_stripe__payments') }}
 ), 
 
+
 --Logical CTE
 
 
@@ -24,7 +25,7 @@ completed_payments as (
         max(payment_created_at) as payment_finalized_date, 
         sum(payment_amount) as total_amount_paid
     from payments
-    where status <> 'fail'
+    where payment_status <> 'fail'
     group by 1
 ),   
 
@@ -56,39 +57,38 @@ final as (
         total_amount_paid, 
         payment_finalized_date, 
         customer_first_name, 
-        customer_last_name,   
+        customer_last_name, 
 
         row_number() over (
-            order by paid_orders.order_placed_at, paid_orders.order_id) 
+            order by order_id)
             as transaction_seq, --Sales transaction sequence
         row_number() over (
-            partition by paid_orders.customer_id 
-            order by paid_orders.order_placed_at, paid_orders.order_id) --Customer sales sequence
+            partition by customer_id
+            order by order_id) --Customer sales sequence
             as customer_sales_seq, 
 
         case  --new vs returning customer
             when ( 
              rank() over (
-                partition by paid_orders.customer_id
-                order by paid_orders.order_placed_at, paid_orders.order_id
+                partition by customer_id
+                order by order_placed_at, order_id
                 ) = 1)
                 then 'new'
         else 'return'
         end as nvsr, 
     
-        sum(paid_orders.total_amount_paid) over (  --customer lifetime vlaue
-            partition by paid_orders.customer_id 
-            order by paid_orders.order_placed_at, paid_orders.order_id)
+        sum(total_amount_paid) over (  --customer lifetime vlaue
+            partition by customer_id 
+            order by order_placed_at)
             as customer_lifetime_value, 
 
-        first_value(paid_orders.order_placed_at) over ( --First day of sales
-            partition by paid_orders.customer_id 
-            order by paid_orders.order_placed_at, paid_orders.order_id )
+        first_value(order_placed_at) over ( --First day of sales
+            partition by customer_id 
+            order by order_placed_at )
             as fdos 
         
-        from paid orders
+        from paid_orders
 
-        left join customers on paid_orders.customer_id = customers.customer_id
         ) 
 
 --Simple Select Statement

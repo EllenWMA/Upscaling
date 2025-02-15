@@ -1,3 +1,4 @@
+
 with orders as (
     select * from {{ ref('stg_jaffle_shop__orders') }}
 ), 
@@ -9,7 +10,7 @@ payments as (
 order_payments as (
     select
         order_id,
-        sum(case when status = 'success' then amount end) as amount
+        sum(case when payment_status = 'success' then payment_amount end) as amount
     from payments
     
     group by 1
@@ -19,7 +20,7 @@ final as (
     select
         orders.order_id, 
         orders.customer_id, 
-        orders.order_date,
+        orders.order_placed_at,
         coalesce(order_payments.amount, 0) as amount
     from orders 
 
