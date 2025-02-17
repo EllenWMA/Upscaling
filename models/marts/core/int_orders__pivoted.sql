@@ -23,5 +23,3 @@ pivoted as (
 
 select * from pivoted
 
-
---Find another creative way to use Jinja in your models.
