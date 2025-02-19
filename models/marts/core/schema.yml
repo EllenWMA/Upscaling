@@ -8,3 +8,8 @@ models:
         tests: 
           - unique
           - not_null
+          - relationships:
+              to: ref('stg_stripe__payments')
+              field: order_id
+
+

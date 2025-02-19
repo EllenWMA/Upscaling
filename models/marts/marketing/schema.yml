@@ -8,9 +8,14 @@ models:
         tests:
           - unique
           - not_null
+          - relationships:
+              to: ref('stg_jaffle_shop__customer')
+              field: customer_id
       - name: first_name 
         tests:
           -   not_null
       - name: last_name 
-        test:
+        tests:
           - not_null
+
+

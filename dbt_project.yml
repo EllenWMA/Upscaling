@@ -41,6 +41,7 @@ models:
     staging: #applies to all files under models/staging/
       +materialized: view
     marts: #applies to all files under models/marts/
+      +required_tests: {"relationship.*":1}
       +materialized: table
 
 

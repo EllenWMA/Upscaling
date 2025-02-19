@@ -1,6 +1,6 @@
 
 version: 2
-models:
+models: 
     - name: int_orders
       columns: 
         - name: order_id
@@ -10,7 +10,11 @@ models:
         - name: customer_id
           tests:
             - not_null
+            - relationships:
+                to: ref('stg_jaffle_shop__orders')
+                field: customer_id
         - name: order_status
           tests: 
             - not_null
             
+
