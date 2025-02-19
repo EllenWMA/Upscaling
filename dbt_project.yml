@@ -37,8 +37,16 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   jaffle_shop:
+    +required_tests: {"unique.*|not_null": 2} #all models have unique and not null
     staging: #applies to all files under models/staging/
       +materialized: view
     marts: #applies to all files under models/marts/
       +materialized: table
 
+
+
+#Add a relationships tests for all marts models in dbt_project.yml
+#Execute run operation.
+#Update tests.
+#Re-execute run operation to make sure it passes.
+#Bonus: Add this run-operation as a CI check, following the directions here.

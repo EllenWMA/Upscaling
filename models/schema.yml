@@ -1,0 +1,34 @@
+
+version: 2
+
+models: 
+  - name: all_dates
+    columns: 
+      - name: date_day
+        tests:
+          - unique
+          - not_null
+  - name: customers
+    columns: 
+      - name: customer_id
+        description: "Unique identifier for customer"
+        tests: 
+          - unique
+          - not_null
+      - name: number_of_orders
+        description: "The number of orders for each customer"
+        tests: 
+          - not_null
+          
+
+       # customers.first_name,
+       # customers.last_name, 
+       # customer_orders.first_order_date,
+       # customer_orders.most_recent_order_date,
+       # coalesce(customer_orders.number_of_orders, 0) as number_of_orders
+
+
+          
+
+
+
