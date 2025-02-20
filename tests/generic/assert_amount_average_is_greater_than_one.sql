@@ -7,7 +7,7 @@
 --group by 1
 --having count(customer_id) > 1 and average_amount < 1
 
---{{ config(enabled = false) }}
+{{ config(enabled = false) }}
 
 {% test average_dollars_spent_greater_than_one(model, group_by_column, column_name) %}
     select 

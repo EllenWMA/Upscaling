@@ -1,8 +1,7 @@
 
 {{ config(enabled = false) }}
 
---{% test average_dollars_spent_greater_than_one(model, column_name, group_by_column) %}
-{% test average_dollars_spent_greater_than_one2(model, column_name, group_by_column) %}
+{% test average_dollars_spent_greater_than_one_disabled(model, column_name, group_by_column) %} --> changed name to disabled
 
     select 
         {{ group_by_column }},
