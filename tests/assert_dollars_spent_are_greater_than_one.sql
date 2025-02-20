@@ -3,8 +3,7 @@
     select 
         {{ group_by_column }},
         avg( {{ column_name }} ) as average_amount 
-    from {{ model }}
-    group by 1
+dbt ls --resource-type test    group by 1
     --group by {{ group_by_column}}
     having average_amount < 1
 
