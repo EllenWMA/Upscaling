@@ -14,5 +14,10 @@ models:
       - name: customer_id
         tests: 
           - not_null
+      - name: amount
+        tests: 
+          - average_dollars_spent_greater_than_one:
+              column_name: amount
+              group_by_column: order_id
 
 
