@@ -20,4 +20,3 @@ models:
               column_name: amount
               group_by_column: order_id
 
-
