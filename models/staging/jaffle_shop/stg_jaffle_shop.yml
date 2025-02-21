@@ -11,11 +11,13 @@ models:
         tests: 
           - unique 
           - not_null
+
       - name: status
         description: "{{ doc('order_status') }}"
         tests:
           - accepted_values:
               values: ['returned', 'completed', 'return_pending', 'shipped', 'placed']
+
       - name: customer_id
         description: "{{ doc('customer_idOrders') }}"
         tests:
@@ -23,8 +25,16 @@ models:
           - relationships: 
               field: customer_id
               to: ref('stg_jaffle_shop__customers')
+
       - name: order_date
         description: "{{ doc('order_date') }}"
+      - name: amount
+        tests: 
+          - dbt_expectations.expect_column_values_to_be_between: 
+              min_value: 0  
+              row_condition: "order_id is not null"
+              strictly: true
+
   - name: stg_jaffle_shop__customers
     description: Staged customer data from our jaffle shop app. 
     columns:
@@ -38,5 +48,3 @@ models:
       - name: last_name
         description: "{{ doc('last_name') }}"
       
-
-
