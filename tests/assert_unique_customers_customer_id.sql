@@ -5,3 +5,8 @@ select
 from {{ ref('customers') }}
 group by 1
 having count(*) > 1 --find customers with the same customer_id
+
+
+
+
+--look at how the compiled results changed from the tests
