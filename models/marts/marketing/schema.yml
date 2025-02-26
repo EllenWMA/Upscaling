@@ -1,0 +1,21 @@
+
+version: 2
+
+models:
+  - name: dim_customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_jaffle_shop__customer')
+              field: customer_id
+      - name: customer_first_name 
+        tests:
+          -   not_null
+      - name: customer_last_name 
+        tests:
+          - not_null
+
+

@@ -1,0 +1,25 @@
+
+version: 2
+
+models:
+  - name: fct_orders
+    columns:
+      - name: order_id
+        tests: 
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_jaffle_shop__orders')
+              field: order_id
+      - name: customer_id
+        tests: 
+          - not_null
+      - name: amount
+        tests: 
+          - dbt_expectations.expect_column_mean_to_be_between:
+              min_value: 1
+              row_condition: "order_id is not null"
+              strictly: false
+            #- average_dollars_spent_greater_than_one:
+          #    column_name: amount
+          #    group_by_column: order_id

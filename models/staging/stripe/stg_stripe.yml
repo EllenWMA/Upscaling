@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: stg_stripe__payments
+    description: Staged payment data.
+    columns: 
+      - name: payment_id
+        description: id for payment. Primary key for payments. The id is unique and not null. 
+        tests:
+          - unique:
+              config: 
+                severity: error
+                error_if: ">100"
+                warn_if: ">10"
+          - not_null
+      - name: order_id
+        description: Id for order. This is not null. 
+        tests: 
+          - not_null
+      - name: payment_method
+        description: "{{ doc('payment_method') }}"
+        tests: 
+          - not_null
+          - accepted_values:
+              values: ['credit_card', 'coupon', 'bank_transfer', 'gift_card']
+              where: "payment_status = 'success'"
+      - name: status
+        description: "{{ doc('payment_status') }}"
+        tests: 
+          - accepted_values:
+              values: ['success', 'fail']
+              config:
+                limit: 10 #will only include the first 10 failures
+                store_failures: true
+      - name: amount
+        description: amount in dollars.
+      - name: created_at
+        description: date the payment is created at
+        tests:
+          - not_null
+      - name: _batched_at
+        description: timestamp payment is created at
+  
+
+

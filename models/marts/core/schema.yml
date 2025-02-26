@@ -1,0 +1,15 @@
+
+version: 2
+
+models: 
+  - name: int_orders__pivoted
+    columns:
+      - name: order_id
+        tests: 
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_stripe__payments')
+              field: order_id
+
+

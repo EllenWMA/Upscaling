@@ -1,0 +1,26 @@
+
+version: 2
+
+models: 
+  - name: all_dates
+    columns: 
+      - name: date_day
+        tests:
+          - unique
+          - not_null
+  - name: customers
+    description: One record per customer
+    columns: 
+      - name: customer_id
+        description: Unique identifier for customer. This is the primary key. 
+        tests: 
+          - unique
+          - not_null
+          - dbt_utils.cardinality_equality: 
+              field: customer_id
+              to: ref('stg_customers')
+      - name: number_of_orders
+        description: "The number of orders for each customer"
+        tests: 
+          - not_null
+
