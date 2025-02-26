@@ -1,7 +1,7 @@
 with customers as (
     select * from {{ ref('stg_jaffle_shop__customers') }}
 ), 
-
+--comment
 orders as ( 
     select * from {{ ref('fct_orders') }}
 ),
